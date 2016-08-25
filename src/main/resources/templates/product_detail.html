@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title>CartShop</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="/js/site.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" th:href="@{/css/normalize.css}"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="/product/">CartShop</a>
+            <nav>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="product-detail">
+            <div class="product-image">
+                 <img th:src="@{/product/{productId}/image(productId=${product.id})}"/>
+            </div>
+            <div class="item-details">
+                <h2><span id="productName" th:text="${product.name}">Product Name</span></h2>
+                <span id="productPrice" class="price" th:text="${'$' + #numbers.formatDecimal(product.price, 1, 2, 'POINT')}">$199.00</span>
+                <p>
+                    <strong>Description:</strong>
+                    <span id="productDescription" th:text="${product.desc}">
+                    	Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lectus mauris, vulputate ac odio eu, vehicula hendrerit risus. In consequat purus a mi dapibus pharetra. Vestibulum sit amet nisl sem. Curabitur tempus, eros ut auctor dictum, libero lorem venenatis diam, at porttitor dolor ante ac nisi. Aenean tempus semper ante sit amet semper. In maximus nisl id neque ultricies hendrerit. Nullam blandit nec massa eget posuere.
+                    </span>
+                </p>
+                <div class="product-cart-options">
+                    <form id="detailCartForm" name="detailCartForm" action="#" th:action="@{/cart/add}" method="post">
+                        <input type="text" class="quantity" th:value="${productPurchase.quantity}" name="quantity"/>
+                        <input type="hidden" name="productId" th:value="${productPurchase.product.id}"/>
+                        <a name="detailButton" class="button" href="javascript:;" onclick="document.getElementById('detailCartForm').submit();">Add to Cart</a>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

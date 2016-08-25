@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title>CartShop Email Receipt</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'/>
+    </head>
+    <body>
+        <header>
+            <h1>CartShop</h1>
+        </header>
+        <section class="checkout">
+            <h2>Your Order is Complete!</h2>
+            <div class="checkout-container">
+                <div class="primary-container">
+                    <p>
+                        <h3>Thank your for your order!</h3>
+                        <span th:text="|Your order number is ${orderNumber}. Feel free to contact us at accounts@cartshop.com if you have any questions or comments. Thanks again!|">city+state+country</span>
+                    </p>
+                    <table th:object="${shippingAddress}">
+                        <th>Shipping Info:</th>
+                        <tr>
+                        	<td th:text="*{firstName} + ' ' + *{lastName}">firstname+lastname</td>
+                        </tr>
+                        <tr>
+                        	<td th:text="*{streetAddress}">123 Anywhere Lane</td>
+                        </tr>
+                        <tr>
+                        	<td th:text="|*{city}, *{state}, *{country}|">city+state+country</td>
+                        </tr>
+                        <tr>
+                        	<td th:text="*{zipCode}">zipcode</td>
+                        </tr>
+                        <tr>
+                        	<td th:text="*{email}">email</td>
+                        </tr>
+                        <tr>
+                        	<td th:text="*{phoneNumber}">phone</td>
+                        </tr>
+                    </table>
+                    <br />
+                    <div class="summary-info">
+                        <table th:unless="${billingAddress != null}">
+                        	<th>Billing Info:</th>
+                        	<tr>
+                        		<td>Same as shipping</td>
+                        	</tr>
+                        </table>
+	                    <table th:if ="${billingAddress != null}" th:object="${billingAddress}">
+	                        <th>Billing Info:</th>
+	                        <tr>
+	                        	<td th:text="*{firstName} + ' ' + *{lastName}">firstname+lastname</td>
+	                        </tr>
+	                        <tr>
+	                        	<td th:text="*{streetAddress}">123 Anywhere Lane</td>
+	                        </tr>
+	                        <tr>
+	                        	<td th:text="|*{city}, *{state}, *{country}|">city+state+country</td>
+	                        </tr>
+	                        <tr>
+	                        	<td th:text="*{zipCode}">zipcode</td>
+	                        </tr>
+	                        <tr>
+	                        	<td th:text="*{email}">email</td>
+	                        </tr>
+	                        <tr>
+	                        	<td th:text="*{phoneNumber}">phone</td>
+	                        </tr>
+	                    </table>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Billing Info:</h3>
+                        <span th:text="|Credit Card ${creditCard}|">Credit Card XXXX</span>
+                    </div>
+                </div>
+                <div class="mini-cart">
+                    <h3>Order Summary</h3>
+	                <table cellpadding="5" cellspacing="5">
+	                	<tr>
+	                		<th>Product</th>
+	                		<th>Price</th>
+	                		<th>Quantity</th>
+	                	</tr>
+			            <tr th:each="productPurchase,iterStat : ${purchase.productPurchases}">
+			                <td th:text="${productPurchase.product.name}">Product Title</td>
+			                <td th:text="${'$' + #numbers.formatDecimal(productPurchase.product.price, 1, 2, 'POINT')}">$199.00</td>
+			                <td th:text="${productPurchase.quantity}">1</td>
+			            </tr>
+		            </table>
+		            <br />
+                    <table cellpadding="5" cellspacing="5">
+                    	<tr>
+                        	<td>Subtotal:</td>
+                        	<td><strong><span th:text="${'$' + #numbers.formatDecimal(subTotal, 1, 2, 'POINT')}">$199.00</span></strong></td>
+                        </tr>
+                        <tr>
+                        	<td>Shipping:</td>
+                        	<td><strong><span th:text="${'$' + #numbers.formatDecimal(shippingCost, 1, 2, 'POINT')}">$199.00</span></strong></td>
+                        </tr>
+                        <tr />
+                        <tr>
+                        	<td>Total:</td>
+                        	<td><strong><span th:text="${'$' + #numbers.formatDecimal(orderTotal, 1, 2, 'POINT')}">$199.00</span></strong></td>
+                        </tr>
+                        <tr />
+                    </table>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

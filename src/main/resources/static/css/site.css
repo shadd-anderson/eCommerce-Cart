@@ -1,0 +1,700 @@
+
+
+/* ==========================================================================
+   Global Styles
+   ========================================================================== */
+body {
+	background: #e5e5e5;
+	font-size: 15px;
+	color: #7a7e76;
+	font-family: 'Roboto', sans-serif;
+	font-weight: 400;
+}
+header {
+	margin: 0;
+	padding: 0 25px;
+	background: #363a31;
+}
+header:after {
+	content: "";
+  	display: table;
+  	clear: both;
+}
+.logo {
+	font-size: 28px;
+	color: #FFF;
+	font-family: 'Roboto Condensed', sans-serif;
+	float: left;
+	margin: 25px 0;
+}
+nav {
+	float: right;
+	padding: 32px 0 20px 0;
+}
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	float: left;
+}
+nav ul li {
+	float: left;
+	margin-right: 25px;
+	padding: 0;
+}
+nav ul li a {
+	text-decoration: none;
+	color: #FFF;
+	padding: 10px 0;
+	opacity: 0.8;
+}
+nav ul li a:hover {
+	color: #FFF;
+	opacity: 1;
+}
+nav .button {
+	top: -10px;
+}
+@media only screen and (max-width: 480px) {
+	nav {
+		float: left;
+		width: 100%;
+		border-top: 1px solid #666;
+	}
+}
+
+
+
+/* ==========================================================================
+   Button Styles
+   ========================================================================== */
+
+.button {
+	padding: 10px 13px;
+	background: #8cbb4e;
+	border: 2px solid #8cbb4e;
+	border-radius: 4px;
+	text-decoration: none;
+	color: #FFF;
+	position: relative;
+	text-align: center;
+	opacity: 1;
+	line-height: 1;
+}
+.button.button-secondary {
+	background: #b9b7b7;
+	border: 2px solid #b9b7b7;
+	color: #FFF;
+}
+.button.button-small {
+	background: #b9b7b7;
+	border-color: #b9b7b7;
+	color: #FFF;
+	padding: 7px 10px;
+	font-size: 14px;
+}
+.button.icon-right {
+	padding-right: 10px;
+}
+.button.icon-right i {
+	position: relative;
+	top: 7px;
+	right: 0;
+	padding-left: 4px;
+	opacity: 0.5;
+}
+.button.icon-left {
+	padding-left: 10px;
+}
+.button.icon-left i {
+	position: relative;
+	top: 7px;
+	left: 0;
+	padding-right: 4px;
+	opacity: 0.5;
+}
+.button-link {
+	color: #8cbb4e;
+	font-weight: 700;
+	text-decoration: none;
+	font-size: 13px;
+}
+
+
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+h1,
+h2,
+h3 {
+	margin: 0;
+	font-weight: 700;
+	line-height: 1.3em;
+	color: #363a31;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+h1 a,
+h2 a,
+h3 a {
+	color: #363a31;
+}
+h1 {
+	font-size: 32px;
+	margin-bottom: 20px;
+}
+h1 span {
+	font-weight: 400;
+	color: #7a7e76;
+}
+h2 {
+	font-size: 21px;
+}
+h3 {
+	font-size: 18px;
+}
+p {
+	line-height: 1.6em;
+	margin: 0 0 20px 0;
+}
+a {
+	text-decoration: none;
+}
+p a {
+	text-decoration: underline;
+}
+strong {
+	font-weight: 700;
+	color: #363a31;
+}
+
+
+
+/* ==========================================================================
+   Page Styles
+   ========================================================================== */
+
+.product-listing {
+	margin-top: 8px;
+	background: #FFF;
+}
+.product-listing:after {
+	content: "";
+  	display: table;
+  	clear: both;
+}
+.product-listing .item {
+	padding: 0 0 40px 0;
+	float: left;
+	border-right: 1px solid #e5e5e5;
+	border-bottom: 1px solid #e5e5e5;
+	text-align: center;
+	width: calc(33.333% - 1px);
+	min-height: 300px;
+}
+.product-listing .item:nth-of-type(3n+0) {
+	border-right: 0;
+}
+@media only screen and (max-width: 768px) {
+    .product-listing .item {
+    	width:100%;
+    	border-right:0;
+    }
+}
+.product-listing .item img {
+	max-height: 200px;
+	max-width: 100%;
+}
+.product-listing .item .price,
+.product-detail .item .price {
+	display: block;
+	margin: 2px 0 28px 0;
+	font-size: 17px;
+	color: #7a7e76;
+}
+.pagination  {
+	padding: 15px 0 45px 0;
+	text-align: center;
+	margin: 0 auto;
+	font-size: 15px;
+	position: relative;
+}
+.pagination i  {
+	color: #363a31;
+	font-size: 45px;
+	position: relative;
+	top: 17px;
+}
+.pagination a.inactive i  {
+	color: #7a7e76;
+	opacity: 0.5;
+	pointer-events: none;
+}
+.pagination-ul li
+{
+    display: inline;
+}
+
+
+/* --- Single Item Product Styles --- */
+
+.product-detail {
+	margin-top: 8px;
+	background: #FFF;
+	padding-bottom: 10px;
+}
+.product-detail:after {
+	content: "";
+  	display: table;
+  	clear: both;
+}
+.product-detail .item-details {
+	text-align: left;
+	float: right;
+	width: calc(50% - 80px);
+	padding: 40px;
+}
+.product-detail .product-image {
+	float: left;
+	width: calc(50% - 80px);
+	padding: 40px;
+	margin: 0 auto;
+	text-align: center;
+}
+.product-detail .product-image img {
+	max-height: 100%;
+	max-width: 100%;
+}
+@media only screen and (max-width: 768px) {
+	.product-detail .item-details {
+		width: calc(100% - 80px);
+		padding: 0 40px 40px 40px;
+	}
+	.product-detail .product-image {
+		width: 100%;
+		width: calc(100% - 80px);
+	}
+	.product-detail .product-image img {
+		max-height: 50%;
+		max-width: 50%;
+	}
+}
+@media only screen and (max-width: 480px) {
+	.product-detail .product-image img {
+		max-height: 100%;
+		max-width: 100%;
+	}
+}
+.product-detail h2 {
+	font-size: 28px;
+}
+.product-detail .price {
+	font-size: 21px;
+	margin-bottom: 30px;
+	display: block;
+}
+.product-detail p strong {
+	display: block;
+	font-size: 16px;
+}
+.product-cart-options {
+	padding-top: 20px;
+}
+.product-cart-options input.quantity {
+	margin-right: 5px;
+}
+
+/* --- Cart Styles --- */
+
+.cart {
+	background: #FFF;
+	max-width: 700px;
+	margin: 8px auto 0 auto;
+	padding: 30px 35px;
+}
+.cart-item {
+	border-top: 1px solid #e5e5e5;
+	padding: 15px 0 25px 0;
+}
+.cart-item:after {
+	content: "";
+  	display: table;
+  	clear: both;
+}
+.cart-item .item {
+	float: left;
+	width: 60%;
+}
+.cart-item h2 {
+	margin: 10px 0 5px 115px;
+	font-size: 20px;
+}
+.cart-item span {
+	display: block;
+	margin-bottom: 6px;
+	margin-left: 115px;
+}
+.cart-item .item .button-link {
+	margin-left: 115px;
+	display: block;
+}
+.img-thumb {
+	max-height: 70px;
+	float: left;
+}
+.cart-quantity {
+	float: right;
+	width: 40%;
+	text-align: right;
+	padding-top: 15px;
+}
+.cart-quantity input {
+	float: right;
+}
+.cart-quantity .button-link {
+	display: block;
+	clear: both;
+	margin-right: 10px;
+	padding-top: 8px;
+}
+.subtotal {
+	padding: 30px 0;
+	display: block;
+	clear: both;
+	border-top: 1px solid #e5e5e5;
+	font-size: 24px;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+.subtotal strong {
+	color: #363a31;
+	font-weight: 700;
+}
+.checkout-footer {
+	padding: 35px 0 15px 0;
+	display: block;
+	clear: both;
+	border-top: 1px solid #e5e5e5;
+}
+.checkout-footer .button-secondary {
+	margin-right: 5px;
+}
+
+/* --- Checkout_1 Styles --- */
+
+.checkout {
+	background: #FFF;
+	width: calc(100% - 70px);
+	margin: 8px auto 0 auto;
+	padding: 30px 35px;
+}
+.coupon-code {
+	background: #f3f3f3;
+	padding: 25px 0 25px 25px;
+	z-index: 100;
+	position: relative;
+	margin-bottom: -1px;
+}
+.checkout .cart-item span {
+	margin-bottom: 5px;
+}
+
+/* --- Checkout_2 Styles --- */
+
+.checkout-container {
+	border-top: 1px solid #e5e5e5;
+	padding: 30px 0 30px 0;
+}
+.checkout-container:after {
+	content: "";
+  	display: table;
+  	clear: both;
+}
+.primary-container {
+	width: 60%;
+	float: left;
+}
+.mini-cart {
+	float: right;
+	width: 30%;
+	border: 8px solid #f3f3f3;
+	padding: 20px 20px 0 20px;
+}
+@media only screen and (max-width: 768px) {
+	.primary-container {
+		width: 100%;
+	}
+	.mini-cart {
+		width: calc(100% - 56px);
+	}
+}
+.mini-cart h3 {
+	margin-bottom: 20px;
+	font-family: 'Roboto Condensed', sans-serif;
+	font-weight: 400;
+	font-size: 24px;
+}
+.mini-cart .cart-item .item {
+	width: 100%;
+}
+.mini-cart .subtotal {
+	padding: 25px 0;
+}
+
+/* --- Checkout_3 Styles --- */
+
+.billing-info {
+	margin-top: 30px;
+}
+.subtotal-small {
+	padding: 15px 0;
+	display: block;
+	clear: both;
+	border-top: 1px solid #e5e5e5;
+	font-size: 17px;
+	font-family: 'Roboto Condensed', sans-serif;
+	line-height: 1.5em;
+}
+.summary-info {
+	width: 100%;
+	float: left;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 30px 0 30px 0;
+}
+.summary-info:first-child {
+	padding-top: 0;
+}
+.summary-info span {
+	display: block;
+	line-height: 1.6em;
+}
+.summary-info input {
+	margin: 0 5px 0 0;
+}
+.summary-info label {
+	position: relative;
+	top: 2px;
+}
+.summary-info h3{
+	margin-bottom: 6px;
+}
+.payment-info {
+	width: 70%;
+	float: left;
+	margin-top: 30px;
+}
+.payment-info form {
+	margin-top: 20px;
+}
+@media only screen and (max-width: 768px) {
+	.payment-info {
+		width: 100%;
+	}
+}
+
+/* --- Order Confirmation Styles --- */
+
+.thank-you-message {
+	background: #f3f3f3;
+	padding: 30px 30px 10px 30px;
+}
+.thank-you-message h3 {
+	margin-bottom: 10px;
+}
+
+
+
+/* ==========================================================================
+   Form Styles
+   ========================================================================== */
+
+form {
+	padding: 0;
+}
+form label {
+	display: block;
+	margin-bottom: 10px;
+	color: #7a7e76;
+}
+form label.inline {
+	float: right;
+	line-height: 40px;
+	margin-right: 10px;
+	color: #7a7e76;
+}
+form input[type=text],
+form textarea {
+	border: 2px solid #b9b7b7;
+	font-size: 15px;
+	padding: 10px 10px;
+	border-radius: 3px;
+	line-height: 1;
+}
+form textarea {
+	line-height: 1.6em;
+}
+form input[type=text]:focus,
+form textarea:focus {
+	outline: 0;
+	border-color: #363a31;
+}
+form input[type=text]:hover,
+form textarea:hover {
+	border-color: #363a31;
+}
+input[type=submit] {
+	margin-right: 5px;
+}
+form select {
+	display: block;
+}
+form select:focus {
+	outline: 0;
+}
+input.quantity {
+	width: 40px;
+}
+form .error input,
+form .error select {
+	border-color: #b50000;
+}
+form .error-message {
+	position: relative;
+	color: #b50000;
+	top: 10px;
+	left: 0;
+	font-weight: 700;
+	font-size: 14px;
+	float: left;
+	margin-bottom: 10px;
+}
+
+
+
+/* ==========================================================================
+   Custom Select Styles
+   ========================================================================== */
+
+
+.custom-select {
+  position: relative;
+  display: inline-block;
+  width: calc(100% - 10px);
+}
+.custom-select select {
+  outline: none;
+  -webkit-appearance: none;
+  display: block;
+  padding: 10px 36px 10px 10px;
+  margin: 0;
+  border: 2px solid #b9b7b7;
+  border-radius: 3px;
+  background: #FFF;
+  color: #888;
+  line-height: normal;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  width: calc(100% - 20px);
+}
+.custom-select .dropdown-arrow {
+  background: #FFF;
+  bottom: 3px;
+  position: absolute;
+  right: 24px;
+  top: 7px;
+  width: 24px;
+  pointer-events: none;
+}
+.custom-select .dropdown-arrow:before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  margin-top: -5px;
+  pointer-events: none;
+  border-top: 8px solid #888;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+.custom-select .dropdown-arrow:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  margin-top: -5px;
+  pointer-events: none;
+  border-top: 4px solid #FFF;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+}
+
+
+
+/* ==========================================================================
+   Form Grid Styles
+   ========================================================================== */
+
+.grid-25,
+.grid-50,
+.grid-100 {
+	float: left;
+	padding-bottom: 25px;
+	position: relative;
+}
+.grid-25 {width: 25%;}
+.grid-50 {width: 50%;}
+.grid-100 {width: 100%;}
+
+.grid-25 label,
+.grid-25 input {
+	width: calc(100% - 54px);
+	float: left;
+}
+.grid-50 label,
+.grid-50 input {
+	width: calc(100% - 54px);
+	float: left;
+}
+.grid-100 label,
+.grid-100 input {
+	width: calc(100% - 54px);
+	float: left;
+}
+@media only screen and (max-width: 768px) {
+	.grid-25,
+	.grid-50,
+	.grid-100 {
+		width: 100%;
+	}
+	.grid-25 label,
+	.grid-25 input,
+	.grid-50 label,
+	.grid-50 input,
+	.grid-100 label,
+	.grid-100 input {
+		width: calc(100% - 24px);
+	}
+	.grid-25 select,
+	.grid-50 select,
+	.grid-100 select {
+		width: 100%;
+	}
+	.grid-25 .custom-select,
+	.grid-50 .custom-select,
+	.grid-100 .custom-select {
+		width: 100%;
+	}
+	.custom-select .dropdown-arrow {
+	  right: 4px;
+	}
+}
+
+
+
+
+
+
+
+
+

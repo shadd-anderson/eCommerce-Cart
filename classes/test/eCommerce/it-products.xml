@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <PRODUCT product_id="1" name="Item 1" desc="Item 1 Description" thumb_image_name="Thumb Image 1" full_image_name="Full Image 1" price="1.11" quantity="5" />
+  <PRODUCT product_id="2" name="Item 2" desc="Item 2 Description" thumb_image_name="Thumb Image 2" full_image_name="Full Image 2" price="2.22" quantity="5" />
+  <PRODUCT product_id="3" name="Item 3" desc="Item 3 Description" thumb_image_name="Thumb Image 3" full_image_name="Full Image 3" price="3.33" quantity="5" />
+  <PRODUCT product_id="4" name="Item 4" desc="Item 4 Description" thumb_image_name="Thumb Image 4" full_image_name="Full Image 4" price="4.44" quantity="5" />
+  <ADDRESS address_id="1" first_name="first name 1" last_name="last name 1" street_address="street address 1" city="city 1" state="state 1" zip_code="zip code 1" country="country 1" phone_number="phone num1" email="email 1" />
+  <ADDRESS address_id="2" first_name="first name 2" last_name="last name 2" street_address="street address 2" city="city 2" state="state 2" zip_code="zip code 2" country="country 2" phone_number="phone num2" email="email 2" />
+  <ADDRESS address_id="3" first_name="first name 3" last_name="last name 3" street_address="street address 3" city="city 3" state="state 3" zip_code="zip code 3" country="country 3" phone_number="phone num3" email="email 3" />
+  <PURCHASE purchase_id="1" />
+  <PURCHASE purchase_id="2" credit_card_number="1234567890123456" credit_card_name="VISA" credit_card_exp_month="4" credit_card_exp_year="2017" credit_card_cvc="111" order_number="123456" shipping_address_id="1" billing_address_id="2" billing_address_same="0" />
+  <PURCHASE purchase_id="3" />
+  <PRODUCT_PURCHASE product_purchase_id="1" purchase_id="2" product_id="2" quantity="1"/>
+  <PRODUCT_PURCHASE product_purchase_id="2" purchase_id="2" product_id="3" quantity="5"/>
+</dataset>

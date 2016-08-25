@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title>CartShop</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="/js/site.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" th:href="@{/css/normalize.css}"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="/product/">CartShop</a>
+            <nav>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="checkout">
+            <h1><span>Checkout&nbsp;&nbsp;>&nbsp;&nbsp;</span>Billing Info</h1>
+            <div class="checkout-container">
+                <div class="primary-container">
+                    <div class="summary-info" th:object="${shippingAddress}">
+                        <h3>Shipping Info:</h3>
+                        <span th:text="*{firstName} + ' ' + *{lastName}">firstname+lastname</span>
+                        <span th:text="*{streetAddress}">123 Anywhere Lane</span>
+                        <span th:text="|*{city}, *{state}, *{country}|">city+state+country</span>
+                        <span th:text="*{zipCode}">zipcode</span>
+                        <span th:text="*{email}">email</span>
+                        <span th:text="*{phoneNumber}">phone</span>
+                    </div>
+                    <div class="summary-info">
+                        <h3>Billing Info:</h3>
+						<form id="billingForm" action="#" th:action="@{/checkout/billing}" th:object="${billingObject}" method="post">
+							<input type="checkbox" id="billing-preference" th:field="*{billingAddressSame}"/> <label for="billing-preference">Same as shipping</label>
+							<div id="billingDiv" class="billingForm" th:style="${billingObject.billingAddressSame} ? 'none' : 'block'">
+		                        <div class="grid-50" th:classappend="${#fields.hasErrors('firstName')} ? 'error'">
+		                            <label for="first_name"> First Name</label>
+		                            <input id="billingFirstName" type="text" name="firstName" th:field="*{firstName}" th:errorclass="error" />
+		                            <p class="error-message" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">This field is required</p>
+		                        </div>
+		                        <div class="grid-50" th:classappend="${#fields.hasErrors('lastName')} ? 'error'">
+		                            <label for="last_name"> Last Name</label>
+		                            <input id="billingLastName" type="text" name="lastName" th:field="*{lastName}"/>
+		                            <p class="error-message" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">This field is required</p>
+		                        </div>
+		                        <div class="grid-100" th:classappend="${#fields.hasErrors('streetAddress')} ? 'error'">
+		                            <label for="address"> Street Address</label>
+		                            <input id="billingStreet" type="text" name="streetAddress" th:field="*{streetAddress}"/>
+		                            <p class="error-message" th:if="${#fields.hasErrors('streetAddress')}" th:errors="*{streetAddress}">This field is required</p>
+		                        </div>
+		                        <div class="grid-50" th:classappend="${#fields.hasErrors('city')} ? 'error'">
+		                            <label for="city"> City</label>
+		                            <input id="billingCity" type="text" name="city" th:field="*{city}"/>
+		                            <p class="error-message" th:if="${#fields.hasErrors('city')}" th:errors="*{city}">This field is required</p>
+		                        </div>
+		                        <div class="grid-25" th:classappend="${#fields.hasErrors('state')} ? 'error'">
+		                            <label for="state"> State</label>
+		                            <div class="custom-select">
+		                                <span class="dropdown-arrow"></span>
+		                                <select id="billingState" th:field="*{state}">
+		                                    <option value="#" >Choose...</option>
+		                                	<option th:each="s : ${LIST_STATES}" th:value="${s}"  th:text="${s}"></option>
+		                                </select>
+		                            </div>
+		                        </div>
+		                        <div class="grid-25" th:classappend="${#fields.hasErrors('zipCode')} ? 'error'">
+		                            <label for="zip_code"> Zip Code:</label>
+		                            <input id="billingZip" type="text" name="zipCode" th:field="*{zipCode}"/>
+		                            <p class="error-message" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}">This field is required</p>
+		                        </div>
+		                        <div class="grid-100" th:classappend="${#fields.hasErrors('country')} ? 'error'">
+		                            <label for="country"> Country</label>
+		                            <div class="custom-select">
+		                                <span class="dropdown-arrow"></span>
+		                                <select id="billingCountry" th:field="*{country}">
+		                                    <option value="#" >Choose...</option>
+		                                	<option th:each="c : ${LIST_COUNTRIES}" th:value="${c}"  th:text="${c}"></option>
+		                                </select>
+		                            </div>
+		                        </div>
+		                        <div class="grid-50" th:classappend="${#fields.hasErrors('phoneNumber')} ? 'error'">
+		                            <label for="phone"> Phone</label>
+		                            <input id="billingPhone" type="text" name="phoneNumber" th:field="*{phoneNumber}"/>
+		                            <p class="error-message" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">This field is required</p>
+		                        </div>
+		                        <div class="grid-50" th:classappend="${#fields.hasErrors('email')} ? 'error'">
+		                            <label for="email"> Email</label>
+		                            <input id="billingEmail" type="text" name="email" th:field="*{email}"/>
+		                            <p class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">This field is required</p>
+		                        </div>
+		                    </div>
+		                    <div class="payment-info">
+		                        <h3>Payment Info:</h3>
+	                            <div class="grid-100" th:classappend="${#fields.hasErrors('creditCardNumber')} ? 'error'">
+	                                <label for="card_number"> Card Number</label>
+	                                <input type="text" name="creditCardNumber" th:field="*{creditCardNumber}"/>
+	                                <p class="error-message" th:if="${#fields.hasErrors('creditCardNumber')}" th:errors="*{creditCardNumber}">This field is required</p>
+	                            </div>
+	                            <div class="grid-100" th:classappend="${#fields.hasErrors('creditCardName')} ? 'error'">
+	                                <label for="name_on_card"> Name on Card</label>
+	                                <input type="text" name="creditCardName" th:field="*{creditCardName}"/>
+	                                <p class="error-message" th:if="${#fields.hasErrors('creditCardName')}" th:errors="*{creditCardName}">This field is required</p>
+	                            </div>
+	                            <div class="grid-50" th:classappend="${#fields.hasErrors('creditCardExpMonth')} ? 'error'">
+	                                <label for="exp_month"> Exp Month</label>
+	                                <div class="custom-select">
+	                                    <span class="dropdown-arrow"></span>
+	                                    <select th:field="*{creditCardExpMonth}">
+		                                    <option value="#" >Choose...</option>
+		                                	<option th:each="m : ${LIST_MONTHS}" th:value="${m}"  th:text="${m}"></option>
+		                                </select>
+	                                </div>
+	                            </div>
+	                            <div class="grid-50" th:classappend="${#fields.hasErrors('creditCardExpYear')} ? 'error'">
+	                                <label for="exp_year"> Exp Year</label>
+	                                <div class="custom-select">
+	                                    <span class="dropdown-arrow"></span>
+	                                    <select th:field="*{creditCardExpYear}">
+		                                    <option value="#" >Choose...</option>
+		                                	<option th:each="y : ${LIST_YEARS}" th:value="${y}"  th:text="${y}"></option>
+		                                </select>
+	                                </div>
+	                            </div>
+	                            <div class="grid-50" th:classappend="${#fields.hasErrors('creditCardCVC')} ? 'error'">
+	                                <label for="cvc"> CVC</label>
+	                                <input type="text" name="creditCardCVC" th:field="*{creditCardCVC}"/>
+	                                <p class="error-message" th:if="${#fields.hasErrors('creditCardCVC')}" th:errors="*{creditCardCVC}">This field is required</p>
+	                            </div>
+		                    </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="mini-cart">
+                    <h3>Order Summary</h3>
+	                <div th:each="productPurchase,iterStat : ${purchase.productPurchases}" class="cart-item">
+			            <div class="item">
+			                <a th:href="@{/detail/{productId}(productId=${productPurchase.product.id})}"><img class="img-thumb" th:src="@{/product/{productId}/image(productId=${productPurchase.product.id})}"/></a>
+			                <h2><a th:href="@{/detail/{productId}(productId=${productPurchase.product.id})}" th:text="${productPurchase.product.name}">Product Title</a></h2>
+			                <span class="price" th:text="${'$' + #numbers.formatDecimal(productPurchase.product.price, 1, 2, 'POINT')}">$199.00</span>
+			                <span th:inline="text" class="item-quantity">Quantity: [[${productPurchase.quantity}]]</span>
+			            </div>
+		            </div>
+                    <div class="subtotal-small">
+                        Subtotal: <strong><span th:text="${'$' + #numbers.formatDecimal(subTotal, 1, 2, 'POINT')}">$199.00</span></strong><br />
+                        Shipping: <strong><span th:text="${'$' + #numbers.formatDecimal(shippingCost, 1, 2, 'POINT')}">$199.00</span></strong>
+                    </div>
+                    <div class="subtotal">
+                        Total: <strong><span th:text="${'$' + #numbers.formatDecimal(orderTotal, 1, 2, 'POINT')}">$199.00</span></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-footer">
+                <form>
+                    <a class="button button-secondary icon-left" href="/checkout/shipping"><i class="material-icons">chevron_left</i>Back</a>
+                    <a class="button" href="javascript:;" onclick="document.getElementById('billingForm').submit();">Complete Purchase</a>
+                </form>
+            </div>
+            <div style="display: none;">
+            	<input type="hidden" id="shippingFirstName" th:field="${shippingAddress.firstName}"/>
+            	<input type="hidden" id="shippingLastName" th:field="${shippingAddress.lastName}"/>/
+                <input type="hidden" id="shippingStreet" th:field="${shippingAddress.streetAddress}"/>
+                <input type="hidden" id="shippingCity" th:field="${shippingAddress.city}"/>
+                <input type="hidden" id="shippingState" th:field="${shippingAddress.state}"/>
+                <input type="hidden" id="shippingCountry" th:field="${shippingAddress.country}"/>
+                <input type="hidden" id="shippingZip" th:field="${shippingAddress.zipCode}"/>
+                <input type="hidden" id="shippingEmail" th:field="${shippingAddress.email}"/>
+                <input type="hidden" id="shippingPhone" th:field="${shippingAddress.phoneNumber}"/>
+            </div>
+        </section>
+    </body>
+</html>

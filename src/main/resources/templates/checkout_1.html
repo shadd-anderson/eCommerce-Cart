@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title>CartShop</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="/js/site.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" th:href="@{/css/normalize.css}"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="/product/">CartShop</a>
+            <nav>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="checkout">
+            <h1><span>Checkout&nbsp;&nbsp;>&nbsp;&nbsp;</span>Verify Items</h1>
+            <div th:each="productPurchase,iterStat : ${purchase.productPurchases}" class="cart-item">
+	            <div class="item">
+	                <a th:href="@{/detail/{productId}(productId=${productPurchase.product.id})}"><img class="img-thumb" th:src="@{/product/{productId}/image(productId=${productPurchase.product.id})}"/></a>
+	                <h2><a th:href="@{/detail/{productId}(productId=${productPurchase.product.id})}" th:text="${productPurchase.product.name}">Product Title</a></h2>
+	                <span class="price" th:text="${'$' + #numbers.formatDecimal(productPurchase.product.price, 1, 2, 'POINT')}">$199.00</span>
+	                <span th:inline="text" class="item-quantity">Quantity: [[${productPurchase.quantity}]]</span>
+	            </div>
+            </div>
+            <div class="coupon-code">
+                <form id="couponForm" action="#" th:action="@{/checkout/coupon}" th:object="${couponCode}" method="post">
+                    <input type="text" th:field="*{code}" placeholder="Enter coupon code"/>
+                </form>
+            </div>
+            <div class="subtotal">
+                Subtotal: <strong><span th:text="${'$' + #numbers.formatDecimal(subTotal, 1, 2, 'POINT')}">$199.00</span></strong>
+            </div>
+            <div class="checkout-footer">
+                <form>
+                    <a class="button button-secondary icon-left" href="/cart"><i class="material-icons">chevron_left</i>Back to Cart</a>
+     				<a class="button" href="javascript:;" onclick="document.getElementById('couponForm').submit();">Continue</a>
+                </form>
+            </div>
+        </section>
+    </body>
+</html>

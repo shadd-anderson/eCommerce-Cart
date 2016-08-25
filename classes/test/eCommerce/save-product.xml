@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <PRODUCT product_id="1" name="Item 1" desc="Item 1 Description" thumb_image_name="Thumb Image 1" full_image_name="Full Image 1" price="1.11" quantity="5" />
+  <PRODUCT product_id="2" name="Item 2" desc="Item 2 Description" thumb_image_name="Thumb Image 2" full_image_name="Full Image 2" price="2.22" quantity="5" />
+  <PRODUCT product_id="3" name="Item 3" desc="Item 3 Description" thumb_image_name="Thumb Image 3" full_image_name="Full Image 3" price="3.33" quantity="5" />
+  <PRODUCT product_id="4" name="Item 4" desc="Item 4 Description" thumb_image_name="Thumb Image 4" full_image_name="Full Image 4" price="4.44" quantity="5" />
+  <PRODUCT product_id="8" name="Salt Shaker" desc="Not just for pepper anymore!" thumb_image_name="sm_saltshaker.jpg" full_image_name="saltshaker.jpg" price="323.89" quantity="3" />
+</dataset>

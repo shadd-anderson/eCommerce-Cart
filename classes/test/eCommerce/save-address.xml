@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <ADDRESS address_id="1" first_name="first name 1" last_name="last name 1" street_address="street address 1" city="city 1" state="state 1" zip_code="zip code 1" country="country 1" phone_number="phone num1" email="email 1" />
+  <ADDRESS address_id="2" first_name="first name 2" last_name="last name 2" street_address="street address 2" city="city 2" state="state 2" zip_code="zip code 2" country="country 2" phone_number="phone num2" email="email 2" />
+  <ADDRESS address_id="3" first_name="first name 3" last_name="last name 3" street_address="street address 3" city="city 3" state="state 3" zip_code="zip code 3" country="country 3" phone_number="phone num3" email="email 3" />
+  <ADDRESS address_id="4" first_name="First" last_name="Last" street_address="123 Street Address" city="City" state="AA" zip_code="12345" country="Country" phone_number="1234567890" email="email@address.com" />
+</dataset>

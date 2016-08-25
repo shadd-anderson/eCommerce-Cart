@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title>CartShop</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="/js/site.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" th:href="@{/css/normalize.css}"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="/product/">CartShop</a>
+            <nav>
+                <ul>
+                    <li><a href="/product/about">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="cart">
+            <h1>Your Cart</h1>
+            <div th:if="${purchase != null and not #lists.isEmpty(purchase.productPurchases)}">
+	            <div th:each="productPurchase,iterStat : ${purchase.productPurchases}" class="cart-item">
+		            <div class="item">
+		                <a th:href="@{/detail/{productId}(productId=${productPurchase.product.id})}"><img class="img-thumb" th:src="@{/product/{productId}/image(productId=${productPurchase.product.id})}"/></a>
+		                <h2><a th:name="@{productName{productId}(productId=${productPurchase.product.id})}" th:href="@{/detail/{productId}(productId=${productPurchase.product.id})}" th:text="${productPurchase.product.name}">Product Title</a></h2>
+		                <span th:id="@{productPrice{productId}(productId=${productPurchase.product.id})}" class="price" th:text="${'$' + #numbers.formatDecimal(productPurchase.product.price, 1, 2, 'POINT')}">$199.00</span>
+		                <form th:id="@{/cartRemove{productId}(productId=${productPurchase.product.id})}" action="#" th:action="@{/cart/remove}" method="post">
+		                    <input type="hidden" name="productId" th:value="${productPurchase.product.id}"/>
+		                    <a class="button-link" href="javascript:;" onclick="parentNode.submit();">Remove Item</a>
+		                </form>
+		            </div>
+		            <form class="cart-quantity" th:id="@{/cartQuantity{productId}(productId=${productPurchase.product.id})}" action="#" th:action="@{/cart/update}" method="post">
+	                    <input type="text" class="quantity" name="newQuantity" th:value="${productPurchase.quantity}"/>
+	                    <input type="hidden" name="productId" th:value="${productPurchase.product.id}"/>
+	                    <a class="button-link" href="javascript:;" onclick="parentNode.submit();">Update</a>
+	                </form>
+	            </div>
+	            <div class="subtotal">
+	                Subtotal: <strong><span id="subtotal" th:text="${'$' + #numbers.formatDecimal(subTotal, 1, 2, 'POINT')}">$199.00</span></strong>
+	            </div>
+	            <div class="checkout-footer">
+	                <form id="emtpyCartForm" action="#" th:action="@{/cart/empty}" method="post">
+	                    <a class="button button-secondary icon-left" href="javascript:;" onclick="document.getElementById('emtpyCartForm').submit();"><i class="material-icons">delete_forever</i>Empty Cart</a>
+	                    <a class="button" href="/checkout/coupon">Checkout</a>
+	                </form>
+	            </div>
+	        </div>
+	        <div th:unless="${purchase != null and not #lists.isEmpty(purchase.productPurchases)}">
+	        	<strong> You have not made any selections</strong>
+	        </div>
+        </section>
+    </body>
+</html>

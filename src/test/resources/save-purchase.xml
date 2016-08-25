@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+  <PURCHASE purchase_id="1" />
+  <PURCHASE purchase_id="2" credit_card_number="1234567890123456" credit_card_name="VISA" credit_card_exp_month="4" credit_card_exp_year="2017" credit_card_cvc="111" order_number="123456" shipping_address_id="1" billing_address_id="2" billing_address_same="0" />
+  <PURCHASE purchase_id="3" />
+  <PURCHASE purchase_id="4" credit_card_number="9876543210654321" credit_card_name="MC" credit_card_exp_month="3" credit_card_exp_year="2018" credit_card_cvc="134" order_number="654321" billing_address_same="1" />
+</dataset>

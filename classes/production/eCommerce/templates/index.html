@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title>CartShop</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="/js/site.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" th:href="@{/css/normalize.css}"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
+    </head>
+    <body>
+        <header>
+            <a class="logo" href="/product/">CartShop</a>
+            <nav>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a name="cartButton" class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
+                </ul>
+            </nav>
+        </header>
+        <section class="product-listing">  
+        	<div th:each="product,iterStat : ${products}" class="item">
+                <a th:href="@{/product/detail/{productId}(productId=${product.id})}"><img th:src="@{/product/{productId}/image(productId=${product.id})}"/></a>
+                <h2><a th:href="@{/product/detail/{productId}(productId=${product.id})}"><span th:text="${product.name}">Product Title</span></a></h2>
+                <span class="price" th:text="${'$' + #numbers.formatDecimal(product.price, 1, 2, 'POINT')}">$199.00</span>
+                <form class="cart-add" th:id="@{/cartAdd{productId}(productId=${product.id})}" action="#" th:action="@{/cart/add}" method="post">
+	                    <input type="hidden" class="quantity" name="quantity" value="1"/>
+	                    <input type="hidden" name="productId" th:value="${product.id}"/>
+	                    <a class="button button-small" href="javascript:;" onclick="parentNode.submit();">Add to Cart</a>
+	            </form>
+            </div>
+        </section>
+        <div class="pagination">
+			<div th:if="${products.getTotalPages() != 1}" class="form-group col-md-11 pagination-centered">
+				<ul class="pagination-ul">
+					<li><a th:class="${products.getNumber() == 0} ? 'inactive'" th:href="@{/product/?page=1}"><i class="material-icons">first_page</i></a></li>
+					<li><a th:class="${products.getNumber() == 0} ? 'inactive'" th:href="@{/product/?page=} + ${products.getNumber()}"><i class="material-icons">chevron_left</i></a></li>
+					<span th:text="|Page ${products.getNumber() + 1} of ${products.getTotalPages()}|">Page 1 of 6</span>
+					<li><a th:class="${products.getNumber() + 1 == products.getTotalPages()} ? 'inactive'" th:href="@{/product/?page=} + ${products.getNumber() + 2}"><i class="material-icons">chevron_right</i></a></li>
+					<li><a th:class="${products.getNumber() + 1 == products.getTotalPages()} ? 'inactive'" th:href="@{/product/?page=} + ${products.getTotalPages()}"><i class="material-icons">last_page</i></a></li>
+				</ul>
+			</div>
+		</div>
+    </body>
+</html>
