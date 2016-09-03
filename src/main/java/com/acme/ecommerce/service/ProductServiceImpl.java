@@ -1,6 +1,9 @@
 package com.acme.ecommerce.service;
 
+import com.acme.ecommerce.domain.OrderQuantityExceedsStockException;
 import com.acme.ecommerce.domain.Product;
+import com.acme.ecommerce.domain.ProductNotFoundException;
+import com.acme.ecommerce.domain.ProductPurchase;
 import com.acme.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -10,30 +13,38 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-	
-	private final ProductRepository repository;
-	
-	@Autowired
-    public ProductServiceImpl(ProductRepository repository) {
-        this.repository = repository;
+
+  private final ProductRepository repository;
+
+  @Autowired
+  public ProductServiceImpl(ProductRepository repository) {
+    this.repository = repository;
+  }
+
+  @Transactional
+  @Override
+  public Iterable<Product> findAll() {
+    return repository.findAll();
+  }
+
+  @Override
+  public Page<Product> findAll(Pageable pageable) {
+    return repository.findAll(pageable);
+  }
+
+  @Override
+  public Product findById(Long id) {
+    Product result = repository.findOne(id);
+    if (result == null) {
+      throw new ProductNotFoundException(id);
     }
+    return result;
+  }
 
-	@Transactional
-	@Override
-	public Iterable<Product> findAll() {
-		return repository.findAll();
-	}
-	
-	@Override
-	public Page<Product> findAll(Pageable pageable) {
-		return repository.findAll(pageable);
-	}
-
-	@Override
-	public Product findById(Long id) {
-		Product result = repository.findOne(id);
-		
-		return result;
-	}
-
+  @Override
+  public void checkForAvailability(Product product, Integer quantity) {
+    if (quantity > product.getQuantity()) {
+      throw new OrderQuantityExceedsStockException(product);
+    }
+  }
 }

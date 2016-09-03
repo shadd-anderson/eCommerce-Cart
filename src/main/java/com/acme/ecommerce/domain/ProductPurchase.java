@@ -3,63 +3,64 @@ package com.acme.ecommerce.domain;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity(name="product_purchase")
+@Entity(name = "product_purchase")
 public class ProductPurchase implements Serializable {
 
-	private static final long serialVersionUID = -3665850872024911072L;
+  private static final long serialVersionUID = -3665850872024911072L;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name = "product_purchase_id")
-	private Long productPurchaseId;
-	
-	@ManyToOne
-	@JoinColumn(name="purchase_id")
-	private Purchase purchase;
-	
-	@ManyToOne
-	@JoinColumn(name="product_id")
-	private Product product;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "product_purchase_id")
+  private Long productPurchaseId;
 
-	@Column(name = "quantity", nullable = false)
-	private Integer quantity;
+  @ManyToOne
+  @JoinColumn(name = "purchase_id")
+  private Purchase purchase;
 
-	public Long getProductPurchaseId() {
-		return productPurchaseId;
-	}
+  @ManyToOne
+  @JoinColumn(name = "product_id")
+  private Product product;
 
-	public void setProductPurchaseId(Long productPurchaseId) {
-		this.productPurchaseId = productPurchaseId;
-	}
+  @Column(name = "quantity", nullable = false)
+  private Integer quantity;
 
-	public Purchase getPurchase() {
-		return purchase;
-	}
+  public Long getProductPurchaseId() {
+    return productPurchaseId;
+  }
 
-	public void setPurchase(Purchase purchase) {
-		this.purchase = purchase;
-	}
+  public void setProductPurchaseId(Long productPurchaseId) {
+    this.productPurchaseId = productPurchaseId;
+  }
 
-	public Product getProduct() {
-		return product;
-	}
+  public Purchase getPurchase() {
+    return purchase;
+  }
 
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+  public void setPurchase(Purchase purchase) {
+    this.purchase = purchase;
+  }
 
-	public Integer getQuantity() {
-		return quantity;
-	}
+  public Product getProduct() {
+    return product;
+  }
 
-	public void setQuantity(Integer quantity) {
-		this.quantity = quantity;
-	}
+  public void setProduct(Product product) {
+    this.product = product;
+  }
 
-	@Override
-	public String toString() {
-		return "ProductPurchase [productPurchaseId=" + productPurchaseId + ", purchase=" + purchase + ", product="
-				+ product + ", quantity=" + quantity + "]";
-	}
+  public Integer getQuantity() {
+    return quantity;
+  }
+
+  public void setQuantity(Integer quantity) {
+    this.quantity = quantity;
+  }
+
+  @Override
+  public String toString() {
+    return "ProductPurchase [productPurchaseId=" + productPurchaseId + ", purchase=" + purchase
+        + ", product="
+        + product + ", quantity=" + quantity + "]";
+  }
 
 }

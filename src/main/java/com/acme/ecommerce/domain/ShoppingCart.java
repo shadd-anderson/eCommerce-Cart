@@ -7,24 +7,24 @@ import org.springframework.stereotype.Component;
 @Scope("session")
 public class ShoppingCart {
 
-	private Purchase purchase = null;
-	private CouponCode couponCode = null;
+  private Purchase purchase = null;
+  private CouponCode couponCode = null;
 
-	public Purchase getPurchase() {
-		return purchase;
-	}
+  public Purchase getPurchase() {
+    return purchase;
+  }
 
-	public void setPurchase(Purchase purchase) {
-		this.purchase = purchase;
-	}
+  public void setPurchase(Purchase purchase) {
+    this.purchase = purchase;
+  }
 
-	public CouponCode getCouponCode() {
-		return couponCode;
-	}
+  public CouponCode getCouponCode() {
+    return couponCode;
+  }
 
-	public void setCouponCode(CouponCode couponCode) {
-		this.couponCode = couponCode;
-	}
+  public void setCouponCode(CouponCode couponCode) {
+    this.couponCode = couponCode;
+  }
 
 
 }

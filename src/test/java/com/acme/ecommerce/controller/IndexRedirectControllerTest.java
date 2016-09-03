@@ -29,7 +29,7 @@ public class IndexRedirectControllerTest {
 	 private MockMvc mockMvc;
 
 	 static {
-		 System.setProperty("properties.home", "/");
+		 System.setProperty("properties.home", "/Users/shadd/Techdegree Projects/E-Commerce Cart/techdegree-javaweb-ecommerce-master");
 	 }
 	 
 	 @Before

@@ -14,6 +14,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.htmlunit.MockMvcWebClientBuilder;
 import org.springframework.web.context.WebApplicationContext;
@@ -40,7 +42,7 @@ public class TestProductControllerIT {
 	WebClient webClient;
 	
 	 static {
-		 System.setProperty("properties.home", "/");
+		 System.setProperty("properties.home", "/Users/shadd/Techdegree Projects/E-Commerce Cart/techdegree-javaweb-ecommerce-master");
 	 }
 
 	@Before
@@ -57,7 +59,7 @@ public class TestProductControllerIT {
 
 	@Test
 	public void ProductDetailAddItemIntegrationTest() throws Exception {
-		HtmlPage productPage = webClient.getPage("http://localhost:8080/product/detail/" + PRODUCT_ID);
+		HtmlPage productPage = webClient.getPage("http://localhost:8079/product/detail/" + PRODUCT_ID);
 		String productName = productPage.getHtmlElementById("productName").getTextContent();
 		String productPrice = productPage.getHtmlElementById("productPrice").getTextContent();
 		String productDesc = productPage.getHtmlElementById("productDescription").getTextContent();

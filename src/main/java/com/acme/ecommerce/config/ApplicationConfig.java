@@ -9,9 +9,10 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @PropertySource("file:${properties.home}/eCommerce.properties")
 public class ApplicationConfig {
 
-	//To resolve ${} in @Value
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
-		return new PropertySourcesPlaceholderConfigurer();
-	}
+  //To resolve ${} in @Value
+  @Bean
+  public static PropertySourcesPlaceholderConfigurer propertyConfigInDev() {
+    return new PropertySourcesPlaceholderConfigurer();
+  }
+
 }

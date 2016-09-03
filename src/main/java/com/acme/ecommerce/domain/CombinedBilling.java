@@ -7,173 +7,173 @@ import javax.validation.constraints.Size;
 
 public class CombinedBilling {
 
-	private boolean billingAddressSame = false;
-	
-	@NotEmpty
-	private String firstName;
-	
-	@NotEmpty
-	private String lastName;
-	
-	@NotEmpty
-	private String streetAddress;
-	
-	@NotEmpty
-	private String city;
-	
-	@NotEmpty
-	private String state;
+  private boolean billingAddressSame = false;
 
-	@NotEmpty
-	@Size(min = 5, max = 10)
-	private String zipCode;
-	
-	@NotEmpty
-	private String country;
-	
-	@NotEmpty
-	@Size(min = 10, max = 11)
-	private String phoneNumber;
-	
-	@Email
-	@NotEmpty
-	private String email;
-	
-	@NotEmpty
-	@Size(min = 13, max = 19)
-	private String creditCardNumber;
-	
-	@NotEmpty
-	private String creditCardName;
-	
-	@NotEmpty
-	private String creditCardExpMonth;
-	
-	@NotEmpty
-	private String creditCardExpYear;
-	
-	@NotEmpty
-	@Size(min = 3, max = 4)
-	private String creditCardCVC;
+  @NotEmpty
+  private String firstName;
 
-	public boolean isBillingAddressSame() {
-		return billingAddressSame;
-	}
+  @NotEmpty
+  private String lastName;
 
-	public void setBillingAddressSame(boolean billingAddressSame) {
-		this.billingAddressSame = billingAddressSame;
-	}
+  @NotEmpty
+  private String streetAddress;
 
-	public String getFirstName() {
-		return firstName;
-	}
+  @NotEmpty
+  private String city;
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+  @NotEmpty
+  private String state;
 
-	public String getLastName() {
-		return lastName;
-	}
+  @NotEmpty
+  @Size(min = 5, max = 10)
+  private String zipCode;
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+  @NotEmpty
+  private String country;
 
-	public String getStreetAddress() {
-		return streetAddress;
-	}
+  @NotEmpty
+  @Size(min = 10, max = 11)
+  private String phoneNumber;
 
-	public void setStreetAddress(String streetAddress) {
-		this.streetAddress = streetAddress;
-	}
+  @Email
+  @NotEmpty
+  private String email;
 
-	public String getCity() {
-		return city;
-	}
+  @NotEmpty
+  @Size(min = 13, max = 19)
+  private String creditCardNumber;
 
-	public void setCity(String city) {
-		this.city = city;
-	}
+  @NotEmpty
+  private String creditCardName;
 
-	public String getState() {
-		return state;
-	}
+  @NotEmpty
+  private String creditCardExpMonth;
 
-	public void setState(String state) {
-		this.state = state;
-	}
+  @NotEmpty
+  private String creditCardExpYear;
 
-	public String getZipCode() {
-		return zipCode;
-	}
+  @NotEmpty
+  @Size(min = 3, max = 4)
+  private String creditCardCVC;
 
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
+  public boolean isBillingAddressSame() {
+    return billingAddressSame;
+  }
 
-	public String getCountry() {
-		return country;
-	}
+  public void setBillingAddressSame(boolean billingAddressSame) {
+    this.billingAddressSame = billingAddressSame;
+  }
 
-	public void setCountry(String country) {
-		this.country = country;
-	}
+  public String getFirstName() {
+    return firstName;
+  }
 
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
+  public String getLastName() {
+    return lastName;
+  }
 
-	public String getEmail() {
-		return email;
-	}
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+  public String getStreetAddress() {
+    return streetAddress;
+  }
 
-	public String getCreditCardNumber() {
-		return creditCardNumber;
-	}
+  public void setStreetAddress(String streetAddress) {
+    this.streetAddress = streetAddress;
+  }
 
-	public void setCreditCardNumber(String creditCardNumber) {
-		this.creditCardNumber = creditCardNumber;
-	}
+  public String getCity() {
+    return city;
+  }
 
-	public String getCreditCardName() {
-		return creditCardName;
-	}
+  public void setCity(String city) {
+    this.city = city;
+  }
 
-	public void setCreditCardName(String creditCardName) {
-		this.creditCardName = creditCardName;
-	}
+  public String getState() {
+    return state;
+  }
 
-	public String getCreditCardExpMonth() {
-		return creditCardExpMonth;
-	}
+  public void setState(String state) {
+    this.state = state;
+  }
 
-	public void setCreditCardExpMonth(String creditCardExpMonth) {
-		this.creditCardExpMonth = creditCardExpMonth;
-	}
+  public String getZipCode() {
+    return zipCode;
+  }
 
-	public String getCreditCardExpYear() {
-		return creditCardExpYear;
-	}
+  public void setZipCode(String zipCode) {
+    this.zipCode = zipCode;
+  }
 
-	public void setCreditCardExpYear(String creditCardExpYear) {
-		this.creditCardExpYear = creditCardExpYear;
-	}
+  public String getCountry() {
+    return country;
+  }
 
-	public String getCreditCardCVC() {
-		return creditCardCVC;
-	}
+  public void setCountry(String country) {
+    this.country = country;
+  }
 
-	public void setCreditCardCVC(String creditCardCVC) {
-		this.creditCardCVC = creditCardCVC;
-	}
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getCreditCardNumber() {
+    return creditCardNumber;
+  }
+
+  public void setCreditCardNumber(String creditCardNumber) {
+    this.creditCardNumber = creditCardNumber;
+  }
+
+  public String getCreditCardName() {
+    return creditCardName;
+  }
+
+  public void setCreditCardName(String creditCardName) {
+    this.creditCardName = creditCardName;
+  }
+
+  public String getCreditCardExpMonth() {
+    return creditCardExpMonth;
+  }
+
+  public void setCreditCardExpMonth(String creditCardExpMonth) {
+    this.creditCardExpMonth = creditCardExpMonth;
+  }
+
+  public String getCreditCardExpYear() {
+    return creditCardExpYear;
+  }
+
+  public void setCreditCardExpYear(String creditCardExpYear) {
+    this.creditCardExpYear = creditCardExpYear;
+  }
+
+  public String getCreditCardCVC() {
+    return creditCardCVC;
+  }
+
+  public void setCreditCardCVC(String creditCardCVC) {
+    this.creditCardCVC = creditCardCVC;
+  }
 
 }

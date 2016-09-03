@@ -12,15 +12,7 @@
         <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
     </head>
     <body>
-        <header>
-            <a class="logo" href="/product/">CartShop</a>
-            <nav>
-                <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
-                </ul>
-            </nav>
+        <header th:replace="layout :: header">
         </header>
         <section class="checkout">
             <h1><span>Checkout&nbsp;&nbsp;>&nbsp;&nbsp;</span>Billing Info</h1>
@@ -137,24 +129,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="mini-cart">
-                    <h3>Order Summary</h3>
-	                <div th:each="productPurchase,iterStat : ${purchase.productPurchases}" class="cart-item">
-			            <div class="item">
-			                <a th:href="@{/detail/{productId}(productId=${productPurchase.product.id})}"><img class="img-thumb" th:src="@{/product/{productId}/image(productId=${productPurchase.product.id})}"/></a>
-			                <h2><a th:href="@{/detail/{productId}(productId=${productPurchase.product.id})}" th:text="${productPurchase.product.name}">Product Title</a></h2>
-			                <span class="price" th:text="${'$' + #numbers.formatDecimal(productPurchase.product.price, 1, 2, 'POINT')}">$199.00</span>
-			                <span th:inline="text" class="item-quantity">Quantity: [[${productPurchase.quantity}]]</span>
-			            </div>
-		            </div>
-                    <div class="subtotal-small">
-                        Subtotal: <strong><span th:text="${'$' + #numbers.formatDecimal(subTotal, 1, 2, 'POINT')}">$199.00</span></strong><br />
-                        Shipping: <strong><span th:text="${'$' + #numbers.formatDecimal(shippingCost, 1, 2, 'POINT')}">$199.00</span></strong>
-                    </div>
-                    <div class="subtotal">
-                        Total: <strong><span th:text="${'$' + #numbers.formatDecimal(orderTotal, 1, 2, 'POINT')}">$199.00</span></strong>
-                    </div>
-                </div>
+                <div th:replace="layout :: mini-cart"></div>
             </div>
             <div class="checkout-footer">
                 <form>

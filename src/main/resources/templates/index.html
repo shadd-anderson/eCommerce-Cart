@@ -12,18 +12,11 @@
         <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
     </head>
     <body>
-        <header>
-            <a class="logo" href="/product/">CartShop</a>
-            <nav>
-                <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a name="cartButton" class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
-                </ul>
-            </nav>
+        <header th:replace="layout :: header">
         </header>
-        <section class="product-listing">  
-        	<div th:each="product,iterStat : ${products}" class="item">
+        <section class="product-listing">
+            <div th:replace="layout :: flash"></div>
+            <div th:each="product,iterStat : ${products}" class="item">
                 <a th:href="@{/product/detail/{productId}(productId=${product.id})}"><img th:src="@{/product/{productId}/image(productId=${product.id})}"/></a>
                 <h2><a th:href="@{/product/detail/{productId}(productId=${product.id})}"><span th:text="${product.name}">Product Title</span></a></h2>
                 <span class="price" th:text="${'$' + #numbers.formatDecimal(product.price, 1, 2, 'POINT')}">$199.00</span>

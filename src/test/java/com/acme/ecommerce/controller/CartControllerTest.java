@@ -1,6 +1,7 @@
 package com.acme.ecommerce.controller;
 
 import com.acme.ecommerce.Application;
+import com.acme.ecommerce.domain.OrderQuantityExceedsStockException;
 import com.acme.ecommerce.domain.Product;
 import com.acme.ecommerce.domain.ProductPurchase;
 import com.acme.ecommerce.domain.Purchase;
@@ -9,6 +10,7 @@ import com.acme.ecommerce.service.ProductService;
 import com.acme.ecommerce.service.PurchaseService;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.results.ResultMatchers;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -19,13 +21,18 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.FlashAttributeResultMatchers;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -52,7 +59,7 @@ public class CartControllerTest {
 	private MockMvc mockMvc;
 
 	static {
-		System.setProperty("properties.home", "/");
+		System.setProperty("properties.home", "/Users/shadd/Techdegree Projects/E-Commerce Cart/techdegree-javaweb-ecommerce-master");
 	}
 
 	@Before
@@ -97,7 +104,8 @@ public class CartControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.post("/cart/add").param("quantity", "1").param("productId", "1"))
 				.andDo(print())
 				.andExpect(status().is3xxRedirection())
-				.andExpect(redirectedUrl("/product/"));
+				.andExpect(redirectedUrl("/product/"))
+				.andExpect(MockMvcResultMatchers.flash().attributeExists("flash"));
 	}
 
 	@Test
@@ -123,7 +131,8 @@ public class CartControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.post("/cart/update").param("newQuantity", "2").param("productId", "1"))
 				.andDo(print())
 				.andExpect(status().is3xxRedirection())
-				.andExpect(redirectedUrl("/cart"));
+				.andExpect(redirectedUrl("/cart"))
+				.andExpect(MockMvcResultMatchers.flash().attributeExists("flash"));
 	}
 
 	@Test
@@ -180,7 +189,8 @@ public class CartControllerTest {
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/cart/remove").param("productId", "1")).andDo(print())
 				.andExpect(status().is3xxRedirection())
-				.andExpect(redirectedUrl("/cart"));
+				.andExpect(redirectedUrl("/cart"))
+				.andExpect(MockMvcResultMatchers.flash().attributeExists("flash"));
 	}
 
 	@Test
@@ -252,7 +262,8 @@ public class CartControllerTest {
 
 		mockMvc.perform(MockMvcRequestBuilders.post("/cart/empty")).andDo(print())
 				.andExpect(status().is3xxRedirection())
-				.andExpect(redirectedUrl("/product/"));
+				.andExpect(redirectedUrl("/product/"))
+				.andExpect(MockMvcResultMatchers.flash().attributeExists("flash"));
 	}
 
 	@Test
@@ -263,6 +274,18 @@ public class CartControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.post("/cart/empty")).andDo(print())
 				.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("/error"));
+	}
+
+	@Test(expected = OrderQuantityExceedsStockException.class)
+	public void excessiveProductThrowsException() throws Exception {
+		Product product = productBuilder();
+		doAnswer(invocation -> {
+			if(product.getQuantity() < 5) {
+				throw new OrderQuantityExceedsStockException(product);
+			}
+			return null;
+		}).when(productService).checkForAvailability(any(Product.class), any(Integer.class));
+		productService.checkForAvailability(product, 5);
 	}
 
 	private Product productBuilder() {

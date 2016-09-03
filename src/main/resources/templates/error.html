@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+        <title>Error!</title>
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,700|Roboto+Condensed:400,700' rel='stylesheet' type='text/css'/>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <script src="/js/site.js"></script>
+        <link rel="stylesheet" type="text/css" href="/static/css/normalize.css" th:href="@{/css/normalize.css}"/>
+        <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
+    </head>
+    <body>
+        <header th:replace="layout :: header"></header>
+        <section class="cart">
+            <h1>Whoops! Looks like you've encountered an error.</h1>
+            <h2>The cause of the error is:</h2>
+            <h2 th:text="${errorMessage}"></h2>
+            <br />
+            <a th:href="${redirect}"><h2> > Go back</h2></a>
+        </section>
+    </body>
+</html>

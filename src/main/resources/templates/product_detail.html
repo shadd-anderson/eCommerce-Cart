@@ -12,15 +12,7 @@
         <link rel="stylesheet" type="text/css" href="/static/css/site.css" th:href="@{/css/site.css}"/>
     </head>
     <body>
-        <header>
-            <a class="logo" href="/product/">CartShop</a>
-            <nav>
-                <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a class="button icon-right" href="/cart">View Cart <i class="material-icons">shopping_cart</i></a></li>
-                </ul>
-            </nav>
+        <header th:replace="layout :: header">
         </header>
         <section class="product-detail">
             <div class="product-image">
@@ -37,6 +29,7 @@
                 </p>
                 <div class="product-cart-options">
                     <form id="detailCartForm" name="detailCartForm" action="#" th:action="@{/cart/add}" method="post">
+                        <div th:if="${flash}" th:text="${flash}" class="error-message" style="display: block;"></div>
                         <input type="text" class="quantity" th:value="${productPurchase.quantity}" name="quantity"/>
                         <input type="hidden" name="productId" th:value="${productPurchase.product.id}"/>
                         <a name="detailButton" class="button" href="javascript:;" onclick="document.getElementById('detailCartForm').submit();">Add to Cart</a>

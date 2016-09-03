@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<header th:fragment="header">
+    <a class="logo" href="/product/">CartShop</a>
+    <nav>
+        <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li th:if="${cart}"><a name="cartButton" class="button icon-right" href="/cart">View
+                                                                                            Cart <i
+                        class="material-icons">shopping_cart</i><span
+                        th:text="${' $' + #numbers.formatDecimal(subTotal, 1, 2, 'POINT')}"></span></a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="mini-cart" th:fragment="mini-cart">
+    <h3>Order Summary</h3>
+    <div th:fragment="products">
+        <div th:each="productPurchase,iterStat : ${purchase.productPurchases}" class="cart-item">
+            <div class="item">
+                <a th:href="@{/detail/{productId}(productId=${productPurchase.product.id})}"><img
+                        class="img-thumb"
+                        th:src="@{/product/{productId}/image(productId=${productPurchase.product.id})}"/></a>
+                <h2><a th:href="@{/detail/{productId}(productId=${productPurchase.product.id})}"
+                       th:text="${productPurchase.product.name}">Product Title</a></h2>
+                <span class="price"
+                      th:text="${'$' + #numbers.formatDecimal(productPurchase.product.price, 1, 2, 'POINT')}">$199.00</span>
+                <span th:inline="text" class="item-quantity">Quantity: [[${productPurchase.quantity}]]</span>
+            </div>
+        </div>
+    </div>
+    <div class="subtotal" th:fragment="subtotal">
+        Subtotal: <strong><span th:text="${'$' + #numbers.formatDecimal(subTotal, 1, 2, 'POINT')}">$199.00</span></strong>
+    </div>
+</div>
+
+<div class="thank-you-message" th:fragment="thanks">
+    <h3>Thank your for your order!</h3>
+    <span th:text="|Your order number is ${orderNumber}. Feel free to contact us at accounts@cartshop.com if you have any questions or comments. Thanks again!|">city+state+country</span>
+    <div class="summary-info" th:object="${shippingAddress}">
+        <h3>Shipping Info:</h3>
+        <div th:text="*{firstName} + ' ' + *{lastName}">firstname+lastname</div>
+        <div th:text="*{streetAddress}">123 Anywhere Lane</div>
+        <div th:text="|*{city}, *{state}, *{country}|">city+state+country</div>
+        <div th:text="*{zipCode}">zipcode</div>
+        <div th:text="*{email}">email</div>
+        <div th:text="*{phoneNumber}">phone</div>
+    </div>
+</div>
+
+<div class="flash" th:if="${flash}" th:classappend="${#strings.toLowerCase(flash.status)}"
+     th:fragment="flash" th:text="${flash.message}"></div>
+
+</body>
+</html>

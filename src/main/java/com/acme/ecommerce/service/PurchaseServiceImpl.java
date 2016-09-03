@@ -1,5 +1,8 @@
 package com.acme.ecommerce.service;
 
+import com.acme.ecommerce.domain.OrderQuantityExceedsStockException;
+import com.acme.ecommerce.domain.Product;
+import com.acme.ecommerce.domain.ProductPurchase;
 import com.acme.ecommerce.domain.Purchase;
 import com.acme.ecommerce.repository.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +16,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 	private final PurchaseRepository repository;
 
 	@Autowired
-    public PurchaseServiceImpl(PurchaseRepository repository) {
+    	public PurchaseServiceImpl(PurchaseRepository repository) {
         this.repository = repository;
     }
 	
@@ -35,5 +38,4 @@ public class PurchaseServiceImpl implements PurchaseService {
 		
 		return result;
 	}
-
 }

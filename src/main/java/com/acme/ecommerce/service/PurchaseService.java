@@ -1,5 +1,8 @@
 package com.acme.ecommerce.service;
 
+import com.acme.ecommerce.domain.OrderQuantityExceedsStockException;
+import com.acme.ecommerce.domain.Product;
+import com.acme.ecommerce.domain.ProductPurchase;
 import com.acme.ecommerce.domain.Purchase;
 
 public interface PurchaseService {
